@@ -43,21 +43,21 @@ int main(int argc, const char * argv[]) {
     //TODO: Add query banks for all emotion triggers and actual functionality to emotions
     //All Trigger banks need to be a uniform length to prevent seg faults
     int nTwo = 1;
-    const char *emotionTriggersJoy[MAX_SIZE] = {"Happy"};
-    const char *emotionTriggersSad[MAX_SIZE] = {"Sad"};
-    const char *emotionTriggersMad[MAX_SIZE] = {"Mad"};
-    const char *emotionTriggersScared[MAX_SIZE] = {"Scared"};
-    const char *emotionTriggersPeace[MAX_SIZE] = {"Peaceful"};
-    const char *emotionTriggerPowerful[MAX_SIZE] = {"Powerful"};
+    const char *emotionTriggersJoy      [MAX_SIZE] = {"Happy"};
+    const char *emotionTriggersSad      [MAX_SIZE] = {"Sad"};
+    const char *emotionTriggersMad      [MAX_SIZE] = {"Mad"};
+    const char *emotionTriggersScared   [MAX_SIZE] = {"Scared"};
+    const char *emotionTriggersPeace    [MAX_SIZE] = {"Peaceful"};
+    const char *emotionTriggerPowerful  [MAX_SIZE] = {"Powerful"};
     
-    STATE testState = {
+    STATE testState = { //Yeah this isn't currently being used, but 1. This took a while to type and 2. I intend to implement it later
         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
            0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     };
-    EMOTION testEmotion = {
+    EMOTION testEmotion = { //The grossly oversimplified version of STATE, EMOTION
         0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     };
     
@@ -70,10 +70,11 @@ int main(int argc, const char * argv[]) {
     int peaceBool;
     
     char response[256];
+    
     struct Companion *test = wakeUp("Test", testState, testEmotion);
     
     printf("Loading...\n");
-    //sleep(2);
+    sleep(1);
     printf("Hello my name is %s\n", test -> name);
     //TODO Add an atual input loop
     
