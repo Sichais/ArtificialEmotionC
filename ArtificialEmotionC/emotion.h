@@ -21,7 +21,7 @@ typedef struct state {
     double  secure;
     double  thankful;
     //PEACE BLOCK END
-    
+
     //POWER BLOCK BEGIN
     double  proud;
     double  important;
@@ -33,7 +33,7 @@ typedef struct state {
     double  intelligent;
     double  confident;
     //POWER BLOCK END
-    
+
     //JOY BLOCK BEGIN
     double  excited;
     double  energetic;
@@ -45,7 +45,7 @@ typedef struct state {
     double  extravagent;
     double  delightful;
     //JOY BLOCK END
-    
+
     //SAD BLOCK BEGIN
     double  sleepy;
     double  bored;
@@ -57,7 +57,7 @@ typedef struct state {
     double  bashful;
     double  stupid;
     //SAD BLOCK END
-    
+
     //MAD BLOCK BEGIN
     double  hurt;
     double  hostile;
@@ -69,7 +69,7 @@ typedef struct state {
     double  frustrated;
     double  skeptical;
     //MAD BLOCK END
-    
+
     //SCARE BLOCK BEGIN
     double  rejected;
     double  confused;
@@ -102,19 +102,19 @@ struct Companion {
 struct Companion *wakeUp (char *name, STATE currentState, EMOTION currentEmotion) {
     struct Companion *who = calloc(3, sizeof(*Companion));
     assert(who != NULL);
-    
+
     who -> name             = strdup(name);
     who -> currentState     = currentState;
     who -> currentEmotion   = currentEmotion;
-    
+
     return who;
 }
 
 void shutDown(struct Companion *who) {
     assert(who != NULL);
-    
+
     free(who -> name);
-    
+
     free(who);
 }
 
@@ -159,7 +159,7 @@ int checkPeace  (const char *emotionTriggersPeaceful,   int nTwo, char *response
 //EMOTION/QUERY FUNCTION BLOCK BEGIN
 int checkMad(const char *emotionTriggersMad, int nTwo, char *response) {
     int madBool = 0;
-    
+
     for (int i = 0; i < nTwo; i++) {
         if (strcmp(&emotionTriggersMad[i], response) == 0) {
             madBool = 1;
@@ -172,7 +172,7 @@ int checkMad(const char *emotionTriggersMad, int nTwo, char *response) {
 
 int checkSad(const char *emotionTriggersSad, int nTwo, char *response) {
     int sadBool = 0;
-    
+
     for (int i = 0; i < nTwo; i++) {
         if (strcmp(&emotionTriggersSad[i], response) == 0) {
             sadBool = 1;
@@ -185,7 +185,7 @@ int checkSad(const char *emotionTriggersSad, int nTwo, char *response) {
 
 int checkJoy(const char *emotionTriggersJoy, int nTwo, char *response) {
     int joyBool = 0;
-    
+
     for (int i = 0; i < nTwo; i++) {
         if (strcmp(&emotionTriggersJoy[i], response) == 0) {
             joyBool = 1;
@@ -198,7 +198,7 @@ int checkJoy(const char *emotionTriggersJoy, int nTwo, char *response) {
 
 int checkQuery(const char *queries, int nOne, char *response) {
     int responseBool = 0;
-    
+
     for (int i = 0; i < nOne; i++) {
         if (strcmp(&queries[i], response) == 0) {
             responseBool = 1;
@@ -211,7 +211,7 @@ int checkQuery(const char *queries, int nOne, char *response) {
 
 int checkScared(const char *emotionTriggersScared, int nTwo, char *response) {
     int scaredBool = 0;
-    
+
     for (int i = 0; i < nTwo; i++) {
         if (strcmp(&emotionTriggersScared[i], response) == 0) {
             scaredBool = 1;
@@ -224,7 +224,7 @@ int checkScared(const char *emotionTriggersScared, int nTwo, char *response) {
 
 int checkPower(const char *emotionTriggersPowerful, int nTwo, char *response) {
     int powerBool = 0;
-    
+
     for (int i = 0; i < nTwo; i++) {
         if (strcmp(&emotionTriggersPowerful[i], response) == 0) {
             powerBool = 1;
@@ -237,7 +237,7 @@ int checkPower(const char *emotionTriggersPowerful, int nTwo, char *response) {
 
 int checkPeace(const char *emotionTriggersPeaceful, int nTwo, char *response) {
     int peaceBool = 0;
-    
+
     for (int i = 0; i < nTwo; i++) {
         if (strcmp(&emotionTriggersPeaceful[i], response) == 0) {
             peaceBool = 1;
@@ -303,19 +303,19 @@ void lowerMad(struct Companion *test) {
 void raisePeace(struct Companion *test) {
     test -> currentEmotion.peaceful += 1;
     test -> currentEmotion.mad -= 1;
-    
+
     if (test -> currentEmotion.joyful > 0.5) {
         test -> currentEmotion.joyful -= 0.5;
     } else if (test -> currentEmotion.joyful < 0) {
         test -> currentEmotion.joyful += 0.7;
     }
-    
+
     if (test -> currentEmotion.powerful > 0.5) {
         test -> currentEmotion.powerful -= 0.5;
     } else if (test -> currentEmotion.joyful < 0) {
         test -> currentEmotion.joyful += 0.7;
     }
-    
+
     if (test -> currentEmotion.scared > 0.5) {
         test -> currentEmotion.scared -= 0.5;
     } else if (test -> currentEmotion.scared < 0) {
