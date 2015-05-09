@@ -9,78 +9,6 @@
 #ifndef ArtificialEmotionC_Header_h
 #define ArtificialEmotionC_Header_h
 
-typedef struct state {
-    char    state;
-    //PEACE BLOCK BEGIN
-    double  trusting;
-    double  loving;
-    double  relaxed;
-    double  pensive;
-    double  responsive;
-    double  serene;
-    double  secure;
-    double  thankful;
-    //PEACE BLOCK END
-
-    //POWER BLOCK BEGIN
-    double  proud;
-    double  important;
-    double  hopeful;
-    double  cheerful;
-    double  satisfied;
-    double  valuable;
-    double  worthwhile;
-    double  intelligent;
-    double  confident;
-    //POWER BLOCK END
-
-    //JOY BLOCK BEGIN
-    double  excited;
-    double  energetic;
-    double  creative;
-    double  aware;
-    double  daring;
-    double  stimulating;
-    double  amused;
-    double  extravagent;
-    double  delightful;
-    //JOY BLOCK END
-
-    //SAD BLOCK BEGIN
-    double  sleepy;
-    double  bored;
-    double  lonely;
-    double  depressed;
-    double  ashamed;
-    double  guilty;
-    double  miserable;
-    double  bashful;
-    double  stupid;
-    //SAD BLOCK END
-
-    //MAD BLOCK BEGIN
-    double  hurt;
-    double  hostile;
-    double  angry;
-    double  hateful;
-    double  critical;
-    double  jealous;
-    double  selfish;
-    double  frustrated;
-    double  skeptical;
-    //MAD BLOCK END
-
-    //SCARE BLOCK BEGIN
-    double  rejected;
-    double  confused;
-    double  helpless;
-    double  submissive;
-    double  insecure;
-    double  anxious;
-    double  embarrassed;
-    //SCARE BLOCK END
-} STATE;
-
 typedef struct emotion {
     double sad;
     double joyful;
@@ -90,21 +18,32 @@ typedef struct emotion {
     double scared;
 } EMOTION;
 
-
+typedef struct responses {
+    int responseBool;
+    //Add more bools for each possible query
+    int timeBool;
+    int fiboBool;
+    //Query bool end
+    int joyBool;
+    int madBool;
+    int sadBool;
+    int scareBool;
+    int peaceBool;
+    int powerBool;
+} RESPONSES;
 //Actual Companion struct declaration
 struct Companion {
-    char    *name;
-    STATE    currentState;
-    EMOTION  currentEmotion;
+    char       *name;
+    EMOTION     currentEmotion;
+    RESPONSES   allResponses;
 } *Companion;
 
 //Creating ("Waking Up") the Companion
-struct Companion *wakeUp (char *name, STATE currentState, EMOTION currentEmotion) {
+struct Companion *wakeUp (char *name, EMOTION currentEmotion, RESPONSES allResponses) {
     struct Companion *who = calloc(3, sizeof(*Companion));
     assert(who != NULL);
 
     who -> name             = strdup(name);
-    who -> currentState     = currentState;
     who -> currentEmotion   = currentEmotion;
 
     return who;
@@ -142,112 +81,116 @@ void lowerPower (struct Companion *test);
 
 
 //EMOTION/QUERY SEARCH FUNCTION BLOCK BEGIN
-int checkQuery(const char *queries, int nOne, char *response);
+int checkQuery(struct Companion *test, char *response, struct Companion *assist);
 
-int checkJoy    (const char *emotionTriggersJoy,        int nTwo, char *response);
-int checkSad    (const char *emotionTriggersSad,        int nTwo, char *response);
-int checkMad    (const char *emotionTriggersMad,        int nTwo, char *response);
-int checkScared (const char *emotionTriggersScared,     int nTwo, char *response);
-int checkPower  (const char *emotionTriggersPowerful,   int nTwo, char *response);
-int checkPeace  (const char *emotionTriggersPeaceful,   int nTwo, char *response);
+int checkJoy    (const char *emotionTriggersJoy,        int nTwo, char *response, struct Companion *assist);
+int checkSad    (const char *emotionTriggersSad,        int nTwo, char *response, struct Companion *assist);
+int checkMad    (const char *emotionTriggersMad,        int nTwo, char *response, struct Companion *assist);
+int checkScared (const char *emotionTriggersScared,     int nTwo, char *response, struct Companion *assist);
+int checkPower  (const char *emotionTriggersPowerful,   int nTwo, char *response, struct Companion *assist);
+int checkPeace  (const char *emotionTriggersPeaceful,   int nTwo, char *response, struct Companion *assist);
 //EMOTION/QUERY FUNCTION BLOCK END
+
+//SPECIALIZED FUNCTIONS BLOCK BEGIN
+int fibonacci(int i);
+//SPECIALIZED FUNCTIONS BLOCK END
 //============================================================================
 //FUNCTION PROTOTYPES END
 
 //FUNCTION DECLARATIONS BEGIN
 //============================================================================
+//SPECIALIZED FUNCTIONS BLOCK BEGIN
+int fibonacci(int i) {
+    if (i == 0) {
+        return 0;
+    }
+    if (i == 1) {
+        return 1;
+    }
+    return fibonacci(i - 1) + fibonacci(i - 2);
+}
+//SPECIALIZED FUNCTIONS BLOCK END
 //EMOTION/QUERY FUNCTION BLOCK BEGIN
-int checkMad(const char *emotionTriggersMad, int nTwo, char *response) {
+int checkMad(const char *emotionTriggersMad, int nTwo, char *response, struct Companion *assist) {
     int madBool = 0;
 
     for (int i = 0; i < nTwo; i++) {
-        if (strcmp(&emotionTriggersMad[i], response) == 0) {
-            madBool = 1;
-        } else {
-            madBool = 0;
-        }
+        if (strcasecmp(&emotionTriggersMad[i], response) == 0) {
+            assist -> allResponses.madBool = 1;
+        } 
     }
     return madBool;
 }
 
-int checkSad(const char *emotionTriggersSad, int nTwo, char *response) {
+int checkSad(const char *emotionTriggersSad, int nTwo, char *response, struct Companion *assist) {
     int sadBool = 0;
 
     for (int i = 0; i < nTwo; i++) {
-        if (strcmp(&emotionTriggersSad[i], response) == 0) {
-            sadBool = 1;
-        } else {
-            sadBool = 0;
+        if (strcasecmp(&emotionTriggersSad[i], response) == 0) {
+            assist -> allResponses.sadBool = 1;
         }
     }
     return sadBool;
 }
 
-int checkJoy(const char *emotionTriggersJoy, int nTwo, char *response) {
+int checkJoy(const char *emotionTriggersJoy, int nTwo, char *response, struct Companion *assist) {
     int joyBool = 0;
 
     for (int i = 0; i < nTwo; i++) {
-        if (strcmp(&emotionTriggersJoy[i], response) == 0) {
-            joyBool = 1;
-        } else {
-            joyBool = 0;
+        if (strcasecmp(&emotionTriggersJoy[i], response) == 0) {
+            assist -> allResponses.joyBool = 1;
         }
     }
     return joyBool;
 }
 
-int checkQuery(const char *queries, int nOne, char *response) {
+//TODO Make a more elegant system than "Compare each query to the response and return a different number
+//Seriously. It works but its weird, get on that
+int checkQuery(struct Companion *test, char *response, struct Companion *assist) {
     int responseBool = 0;
-
-    for (int i = 0; i < nOne; i++) {
-        if (strcmp(&queries[i], response) == 0) {
-            responseBool = 1;
-        } else {
-            responseBool = 0;
-        }
+    if ((strstr(response, "Time") != NULL) || (strstr(response, "time") != NULL)) {
+        assist -> allResponses.timeBool = 1;
+    }
+    if ((strstr(response, "Fibonacci") != NULL || (strstr(response, "fibonacci") != NULL))) {
+        assist -> allResponses.fiboBool = 1;
     }
     return responseBool;
 }
 
-int checkScared(const char *emotionTriggersScared, int nTwo, char *response) {
+int checkScared(const char *emotionTriggersScared, int nTwo, char *response, struct Companion *assist) {
     int scaredBool = 0;
 
     for (int i = 0; i < nTwo; i++) {
-        if (strcmp(&emotionTriggersScared[i], response) == 0) {
-            scaredBool = 1;
-        } else {
-            scaredBool = 0;
+        if (strcasecmp(&emotionTriggersScared[i], response) == 0) {
+            assist -> allResponses.scareBool = 1;
         }
     }
     return scaredBool;
 }
 
-int checkPower(const char *emotionTriggersPowerful, int nTwo, char *response) {
+int checkPower(const char *emotionTriggersPowerful, int nTwo, char *response, struct Companion *assist) {
     int powerBool = 0;
 
     for (int i = 0; i < nTwo; i++) {
-        if (strcmp(&emotionTriggersPowerful[i], response) == 0) {
-            powerBool = 1;
-        } else {
-            powerBool = 0;
+        if (strcasecmp(&emotionTriggersPowerful[i], response) == 0) {
+            assist -> allResponses.powerBool = 1;
         }
     }
     return powerBool;
 }
 
-int checkPeace(const char *emotionTriggersPeaceful, int nTwo, char *response) {
+int checkPeace(const char *emotionTriggersPeaceful, int nTwo, char *response, struct Companion *assist) {
     int peaceBool = 0;
 
     for (int i = 0; i < nTwo; i++) {
-        if (strcmp(&emotionTriggersPeaceful[i], response) == 0) {
-            peaceBool = 1;
-        } else {
-            peaceBool = 0;
+        if (strcasecmp(&emotionTriggersPeaceful[i], response) == 0) {
+            assist -> allResponses.peaceBool = 1;
         }
     }
     return peaceBool;
 }
 //EMOTION/QUERY FUNCTION BLOCK END
+
 
 //EMOTION MOD FUNCTION BLOCK BEGIN
 void raiseSad(struct Companion *test) {
