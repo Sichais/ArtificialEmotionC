@@ -45,7 +45,7 @@ int main(int argc, const char * argv[]) {
 
     struct tm *info;
     info = localtime (&rawtime);
-
+    
     //Number of arguements in Emotion Triggers array, KEEP UP TO DATE WITH ARRAY
     //int nOne = 2;
     //const char *queries[nOne] = {"Time", "Test"};
@@ -59,26 +59,7 @@ int main(int argc, const char * argv[]) {
     const char *emotionTriggersScared   [nOne] = {"Scared"};
     const char *emotionTriggersPeace    [nOne] = {"Peaceful"};
     const char *emotionTriggerPowerful  [nOne] = {"Powerful"};
-
-    EMOTION testEmotion = { //The grossly oversimplified version of STATE; EMOTION
-        0.0, //Sad
-        0.0, //Joy
-        0.0, //Power
-        0.0, //Peace
-        0.0, //Mad
-        0.0, //Scare
-    };
     
-    RESPONSES testResponses = {
-        0, //response
-        0, //time (query)
-        0, //joy
-        0, //mad
-        0, //sad
-        0, //scare
-        0, //peace
-        0, //power
-    };
     char response[64];
     char username[64];
     char password[64];
@@ -148,9 +129,35 @@ int main(int argc, const char * argv[]) {
     
     breakOut = 0;
     
+    EMOTION testEmotion = { //The grossly oversimplified version of STATE; EMOTION
+        0.0, //Sad
+        0.0, //Joy
+        0.0, //Power
+        0.0, //Peace
+        0.0, //Mad
+        0.0, //Scare
+    };
+    
+    RESPONSES testResponses = {
+        0, //response
+        0, //time (query)
+        0, //joy
+        0, //mad
+        0, //sad
+        0, //scare
+        0, //peace
+        0, //power
+    };
+    struct User *past = establishUsers("Sichais", "password");
     struct User *user = createUser(username, password);
     struct Companion *assist = wakeUp("\0", testEmotion, testResponses);
     
+    int logBool = logIn(user, past);
+    
+    if (logBool == 0) {
+        printf("Invalid credentials, exitting program");
+        exit(1);
+    }
     printf("Loading...\n");
     sleep(1);
     printf("Welcome %s"

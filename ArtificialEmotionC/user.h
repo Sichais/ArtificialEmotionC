@@ -14,6 +14,25 @@ struct User {
     char *password;
 } *User;
 
+struct User *establishUsers (char *username, char *password) {
+    struct User *pastUsers = calloc(3, sizeof(*User));
+    assert(pastUsers != NULL);
+    
+    pastUsers -> username = strdup(username);
+    pastUsers -> password = strdup(password);
+    
+    return pastUsers;
+}
+
+void clearPastUsers (struct User *pastUsers) {
+    assert(pastUsers != NULL);
+    
+    free(pastUsers -> username);
+    free(pastUsers -> password);
+    
+    free(pastUsers);
+}
+
 struct User *createUser (char *username, char *password) {
     struct User *what = calloc(3, sizeof(*User));
     assert(what != NULL);
@@ -33,7 +52,14 @@ void logOut (struct User *what) {
     free(what);
 }
 
-void logIn (struct User *what) {
+int logIn (struct User *user, struct User *past) {
+    int logBool = 0;
+    int compUser = strcasecmp(user -> username, past -> username);
+    int compPass = strcasecmp(user -> password, past -> password);
     
+    if (compUser == 0 && compPass == 0) {
+        logBool = 1;
+    }
+    return logBool;
 }
 #endif
