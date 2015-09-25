@@ -245,24 +245,24 @@ void lowerMad(struct Companion *test) {
 
 void raisePeace(struct Companion *test) {
     test -> currentEmotion.peaceful += 1;
-    test -> currentEmotion.mad -= 1;
+    test -> currentEmotion.mad      -= 1;
 
-    if (test -> currentEmotion.joyful > 0.5) {
-        test -> currentEmotion.joyful -= 0.5;
+    if (test -> currentEmotion.joyful        > 0.5) {
+        test -> currentEmotion.joyful        -= 0.5;
     } else if (test -> currentEmotion.joyful < 0) {
-        test -> currentEmotion.joyful += 0.7;
+        test -> currentEmotion.joyful        += 0.7;
     }
 
-    if (test -> currentEmotion.powerful > 0.5) {
-        test -> currentEmotion.powerful -= 0.5;
+    if (test -> currentEmotion.powerful      > 0.5) {
+        test -> currentEmotion.powerful      -= 0.5;
     } else if (test -> currentEmotion.joyful < 0) {
-        test -> currentEmotion.joyful += 0.7;
+        test -> currentEmotion.joyful        += 0.7;
     }
 
-    if (test -> currentEmotion.scared > 0.5) {
-        test -> currentEmotion.scared -= 0.5;
+    if (test -> currentEmotion.scared        > 0.5) {
+        test -> currentEmotion.scared        -= 0.5;
     } else if (test -> currentEmotion.scared < 0) {
-        test -> currentEmotion.scared += 0.7;
+        test -> currentEmotion.scared        += 0.7;
     }
 }
 
@@ -273,28 +273,28 @@ void lowerPeace(struct Companion *test) {
 
 void raisePower (struct Companion *test) {
     test -> currentEmotion.powerful += 1;
-    test -> currentEmotion.scared -= 1;
-    test -> currentEmotion.joyful += 0.5;
+    test -> currentEmotion.scared   -= 1;
+    test -> currentEmotion.joyful   += 0.5;
     test -> currentEmotion.peaceful -= 0.5;
 }
 
 void lowerPower (struct Companion *test) {
     test -> currentEmotion.powerful -= 1;
-    test -> currentEmotion.scared += 1;
-    test -> currentEmotion.joyful -= 0.4;
+    test -> currentEmotion.scared   += 1;
+    test -> currentEmotion.joyful   -= 0.4;
 }
 
 void raiseScared (struct Companion *test) {
-    test -> currentEmotion.scared += 1;
+    test -> currentEmotion.scared   += 1;
     test -> currentEmotion.peaceful -= 1.5;
-    test -> currentEmotion.mad -= 0.2;
-    test -> currentEmotion.joyful -= 0.2;
-    test -> currentEmotion.sad += 0.2;
+    test -> currentEmotion.mad      -= 0.2;
+    test -> currentEmotion.joyful   -= 0.2;
+    test -> currentEmotion.sad      += 0.2;
 }
 
 void lowerScared (struct Companion *test) {
-    test -> currentEmotion.scared -= 1;
+    test -> currentEmotion.scared   -= 1;
     test -> currentEmotion.peaceful += 0.7;
-    test -> currentEmotion.sad -= 0.2;
+    test -> currentEmotion.sad      -= 0.2;
 }
 #endif

@@ -17,6 +17,13 @@
 #include <limits.h>
 #include <termios.h>
 
+//#include <curl/curl.h>
+/* Included in Header:
+ 
+ Ability to use cURL
+ 
+*/
+
 //Personal headers
 #include "emotion.h"
 #include "user.h"
@@ -34,7 +41,21 @@
 
 */
 
+//JSON parser headers
+#include "frozen.h"
+/* Included in Header:
+    parse_json() functions to 'tokenize' or split the json into parts (tokens)
+ 
+    find_json_token() function to find certain parameters in a token
+ 
+    NOTE: Free the json token array when you're done with it
+ 
+    NOTE: While parse_json() and parse_json2() both parse json, json2 doesn't need a pre-allocated token array, instead allocates one automatically
+ 
+*/
+
 #define MAX_SIZE 1028
+#define MAX_RESPONSE_SIZE 64
 #define nOne 2
 #define nTwo 1
 //MAIN FUNCTION BEGIN
@@ -60,12 +81,11 @@ int main(int argc, const char * argv[]) {
     const char *emotionTriggersPeace    [nOne] = {"Peaceful"};
     const char *emotionTriggerPowerful  [nOne] = {"Powerful"};
     
-    char response[64];
+    char *response = malloc(MAX_RESPONSE_SIZE);
     char username[64];
     char password[64];
     char firstChoice[8];
-    int  firstBool = 0;
-    int breakOut = 0;
+    int  breakOut = 0;
     
     /*
      This is extroardinarily complicated for no reason
@@ -73,7 +93,7 @@ int main(int argc, const char * argv[]) {
     I regret nothing
      */
     struct termios oflags, nflags;
-    printf("Would you like to log in? y/n ");
+    printf("Would you like to log in? y/n: ");
     while (breakOut == 0) {
         scanf("%s", firstChoice);
         
@@ -100,8 +120,11 @@ int main(int argc, const char * argv[]) {
                 }
                 
                 printf("Enter Password: ");
+                
                 fgets(password, sizeof(password), stdin);
-                password[strlen(password) - 1] = 0;
+                if ((strlen(password) > 0) && (password[strlen(password) - 1] == '\n')) {
+                    password [strlen(password) - 1] = '\0';
+                }
                 
                 if (tcsetattr(fileno(stdin), TCSANOW, &oflags)) {
                     perror("tcsetattr");
@@ -114,6 +137,7 @@ int main(int argc, const char * argv[]) {
                 
             }
             case 'n': {
+                printf("Logging out...");
                 exit(1);
             }
             default: {
@@ -123,10 +147,6 @@ int main(int argc, const char * argv[]) {
             }
         }
     }
-    //TODO Make this work,
-    //...
-    //Because it doesn't, fix it (The password)
-    
     breakOut = 0;
     
     EMOTION testEmotion = { //The grossly oversimplified version of STATE; EMOTION
@@ -158,23 +178,52 @@ int main(int argc, const char * argv[]) {
         printf("Invalid credentials, exitting program");
         exit(1);
     }
+    /*
+     
+     *** TO CONTINUE: INSTALL cURL ON MACHINE ***
+     
+    CURL *curl;
+    CURLcode res;
+    
+    curl_global_init(CURL_GLOBAL_DEFAULT);
+    
+    curl = curl_easy_init();
+    if (curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/RiotSchmick?api_key=abcd4950-8698-480b-ac2f-745d871b623f");
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+            
+            curl_easy_cleanup(curl);
+        }
+    }
+    //curl --request GET 'https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/RiotSchmick?api_key=abcd4950-8698-480b-ac2f-745d871b623f' --include
+     
+    */
+    
     printf("Loading...\n");
     sleep(1);
     printf("Welcome %s"
            "\n\n"
            "Please enter the name of your assistant: ", user -> username);
     
-    scanf("%32s", assist -> name);
+    fgets(assist -> name, MAX_RESPONSE_SIZE, stdin);
+    if ((strlen(assist -> name) > 0) && (assist -> name[strlen(assist -> name) - 1])) {
+        assist -> name[strlen(assist -> name) -1] = '\0';
+    }
+    
     printf("Hello my name is %s\n", assist -> name);
     //TODO Add an atual input loop
 
-    printf("Please enter a command, with Q exiting the program\n");
-    int responseEnd = strcasecmp("Q", response);
-    while (responseEnd != 0) {
+    printf("Please enter a command, Or say 'Log out' to exit\n");
+    int responseEnd1 = strcasecmp("Log Out", response);
+    while (responseEnd1 != 0) {
         printf(">");
-    
-        scanf("%63s", response);
-        response[strcspn(response, "\n")] = 0;
+        
+        fgets(response, MAX_RESPONSE_SIZE, stdin);
+        if ((strlen(response) > 0) && (response[strlen(response) - 1] == '\n')) {
+            response [strlen(response) - 1] = '\0';
+        }
 
         assist -> allResponses.responseBool = checkQuery(assist, response, assist);
 
@@ -213,11 +262,14 @@ int main(int argc, const char * argv[]) {
             }
             assist -> allResponses.fiboBool = 0;
         }
-        responseEnd = strcasecmp("Q", response);
+        responseEnd1 = strcasecmp("Log Out", response);
         //TODO Add emotional state dependant regex
     }
     printf("Shutting down...");
     shutDown(assist);
+    
+    //curl_global_cleanup();
+    
     return 0;
 }
 //MAIN FUNCTION END

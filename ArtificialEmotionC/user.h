@@ -54,8 +54,8 @@ void logOut (struct User *what) {
 
 int logIn (struct User *user, struct User *past) {
     int logBool = 0;
-    int compUser = strcasecmp(user -> username, past -> username);
-    int compPass = strcasecmp(user -> password, past -> password);
+    int compUser = strcmp(user -> username, past -> username);
+    int compPass = strcmp(user -> password, past -> password);
     
     if (compUser == 0 && compPass == 0) {
         logBool = 1;
