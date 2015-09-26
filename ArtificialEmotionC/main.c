@@ -2,8 +2,9 @@
 //  main.c
 //  ArtificialEmotionC
 //
-//  Created by Zane Lassiter on 4/29/15.
-//  Copyright (c) 2015 Zane Lassiter. All rights reserved.
+//  Created by Zane Lassiter on April 29th, 2015
+//
+//  LAST EDITED:                September 25th, 2015
 //
 
 //System Libraries
