@@ -18,7 +18,9 @@
 #include <limits.h>
 #include <termios.h>
 
-//#include <curl/curl.h>
+#include <json.h>
+
+#include <curl.h>
 /* Included in Header:
  
  Ability to use cURL
@@ -179,28 +181,8 @@ int main(int argc, const char * argv[]) {
         printf("Invalid credentials, exitting program");
         exit(1);
     }
-    /*
-     
-     *** TO CONTINUE: INSTALL cURL ON MACHINE ***
-     
-    CURL *curl;
-    CURLcode res;
     
-    curl_global_init(CURL_GLOBAL_DEFAULT);
-    
-    curl = curl_easy_init();
-    if (curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/RiotSchmick?api_key=abcd4950-8698-480b-ac2f-745d871b623f");
-        res = curl_easy_perform(curl);
-        if (res != CURLE_OK) {
-            fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
-            
-            curl_easy_cleanup(curl);
-        }
-    }
     //curl --request GET 'https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/RiotSchmick?api_key=abcd4950-8698-480b-ac2f-745d871b623f' --include
-     
-    */
     
     printf("Loading...\n");
     sleep(1);
