@@ -18,15 +18,6 @@
 #include <limits.h>
 #include <termios.h>
 
-#include <json.h>
-
-#include <curl.h>
-/* Included in Header:
- 
- Ability to use cURL
- 
-*/
-
 //Personal headers
 #include "emotion.h"
 #include "user.h"
@@ -42,19 +33,6 @@
 
  TODO: Add STATE Mod functions
 
-*/
-
-//JSON parser headers
-#include "frozen.h"
-/* Included in Header:
-    parse_json() functions to 'tokenize' or split the json into parts (tokens)
- 
-    find_json_token() function to find certain parameters in a token
- 
-    NOTE: Free the json token array when you're done with it
- 
-    NOTE: While parse_json() and parse_json2() both parse json, json2 doesn't need a pre-allocated token array, instead allocates one automatically
- 
 */
 
 #define MAX_SIZE 1028
@@ -91,9 +69,9 @@ int main(int argc, const char * argv[]) {
     int  breakOut = 0;
     
     /*
-     This is extroardinarily complicated for no reason
-    ...
-    I regret nothing
+     Reads input for Username value
+     
+     Password input is hidden
      */
     struct termios oflags, nflags;
     printf("Would you like to log in? y/n: ");
@@ -181,8 +159,6 @@ int main(int argc, const char * argv[]) {
         printf("Invalid credentials, exitting program");
         exit(1);
     }
-    
-    //curl --request GET 'https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/RiotSchmick?api_key=abcd4950-8698-480b-ac2f-745d871b623f' --include
     
     printf("Loading...\n");
     sleep(1);
