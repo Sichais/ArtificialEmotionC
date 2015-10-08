@@ -1,6 +1,6 @@
 # ArtificialEmotionC
 A basic Companion/Assistant using a basic AI  
-#HORRIBLY UNDONE!  
+#HORRIBLY UNFINISHED!  
 *Current features list*  
 Can tell you the Fibonacci sequence up to the n-th term  
 Can tell you the (system) Time  
