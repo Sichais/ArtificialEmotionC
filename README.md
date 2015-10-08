@@ -12,4 +12,7 @@ Tell actual time by connecting to some online service to tell accurate time rega
 Have interesting emotions that change how interactions work  
 State saving, allowing for long lasting assistant states  
 Have general conversation queries that actually produce an interesting assistant  
-Probably a Neural Network, because those are pretty cool
+Probably a Neural Network, because those are pretty cool  
+  
+  
+**Compiled on OS X El Capitan, with Xcode 7.1 Beta, not tested for other systems**
