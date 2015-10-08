@@ -237,13 +237,15 @@ int main(int argc, const char * argv[]) {
     
     RESPONSES testResponses = {
         0, //response
-        0, //time (query)
+        0, //Time (query)
+        0, //Fibo (query)
         0, //joy
         0, //mad
         0, //sad
         0, //scare
         0, //peace
         0, //power
+        0, //Debug command
     };
     struct User *past = establishUsers("Sichais", "password");
     struct User *user = createUser(username, password);
@@ -305,7 +307,7 @@ int main(int argc, const char * argv[]) {
         } else if (assist -> allResponses.scareBool == 1) {
             raiseScared(assist);
         } else if (assist -> allResponses.powerBool == 1) {
-            //TODO Add raisePower function
+            raisePower(assist);
         } else if (assist -> allResponses.peaceBool == 1) {
             raisePeace(assist);
         }
@@ -323,6 +325,153 @@ int main(int argc, const char * argv[]) {
                 printf("%d \n", fibonacci(i));
             }
             assist -> allResponses.fiboBool = 0;
+        }
+        if (assist -> allResponses.debugBool == 1) { //72 emotions + 1 line for each for readability
+            printf("Debug code entered: \n"         //and needing to reference those same 72 emotions
+                   "Bashful:          %f\n"        //really makes the line count skyrocket
+                   "Stupid:           %f\n"
+                   "Miserable:        %f\n"
+                   "Inadequate:       %f\n"
+                   "Inferior:         %f\n"
+                   "Apathetic:        %f\n"
+                   "Guilty:           %f\n"
+                   "Ashamed:          %f\n"
+                   "Depressed:        %f\n"
+                   "Lonely:           %f\n"
+                   "Bored:            %f\n"
+                   "Sleepy:           %f\n"
+                   "Daring:           %f\n"
+                   "Fascinating:      %f\n"
+                   "Stimulating:      %f\n"
+                   "Amused:           %f\n"
+                   "Extravagant:      %f\n"
+                   "Delightful:       %f\n"
+                   "Excited:          %f\n"
+                   "Sexy:             %f\n"
+                   "Energetic:        %f\n"
+                   "Playful:          %f\n"
+                   "Creative:         %f\n"
+                   "Aware:            %f\n"
+                   "Confident:        %f\n"
+                   "Intelligent:      %f\n"
+                   "Worthwhile:       %f\n"
+                   "Valuable:         %f\n"
+                   "Satisfied:        %f\n"
+                   "Cheerful:         %f\n"
+                   "Faithful:         %f\n"
+                   "Important:        %f\n"
+                   "Hopeful:          %f\n"
+                   "Appreciated:      %f\n"
+                   "Respected:        %f\n"
+                   "Proud:            %f\n"
+                   "Pensive:          %f\n"
+                   "Relaxed:          %f\n"
+                   "Responsive:       %f\n"
+                   "Serene:           %f\n"
+                   "Sentimental:      %f\n"
+                   "Thankful:         %f\n"
+                   "Content:          %f\n"
+                   "Thoughtful:       %f\n"
+                   "Intimate:         %f\n"
+                   "Loving:           %f\n"
+                   "Trusting:         %f\n"
+                   "Nurturing:        %f\n"
+                   "Skeptical:        %f\n"
+                   "Irratated:        %f\n"
+                   "Furious:          %f\n"
+                   "Frustrated:       %f\n"
+                   "Selfish:          %f\n"
+                   "Jealous:          %f\n"
+                   "Critical:         %f\n"
+                   "Hateful:          %f\n"
+                   "Rage:             %f\n"
+                   "Angry:            %f\n"
+                   "Hostile:          %f\n"
+                   "Hurt:             %f\n"
+                   "Bewildered:       %f\n"
+                   "Discouraged:      %f\n"
+                   "Insignificant:    %f\n"
+                   "Weak:             %f\n"
+                   "Foolish:          %f\n"
+                   "Embarrassed:      %f\n"
+                   "Rejected:         %f\n"
+                   "Confused:         %f\n"
+                   "Helpful:          %f\n"
+                   "Submissive:       %f\n"
+                   "Insecure:         %f\n"
+                   "Anxious:          %f\n",
+                       assist -> currentTrueEmotion.bashful,
+                       assist -> currentTrueEmotion.stupid,
+                       assist -> currentTrueEmotion.miserable,
+                       assist -> currentTrueEmotion.inadequate,
+                       assist -> currentTrueEmotion.inferior,
+                       assist -> currentTrueEmotion.apathetic,
+                       assist -> currentTrueEmotion.guilty,
+                       assist -> currentTrueEmotion.ashamed,
+                       assist -> currentTrueEmotion.depressed,
+                       assist -> currentTrueEmotion.lonely,
+                       assist -> currentTrueEmotion.bored,
+                       assist -> currentTrueEmotion.sleepy,
+                       assist -> currentTrueEmotion.daring,
+                       assist -> currentTrueEmotion.fascinating,
+                       assist -> currentTrueEmotion.stimulating,
+                       assist -> currentTrueEmotion.amused,
+                       assist -> currentTrueEmotion.extravagant,
+                       assist -> currentTrueEmotion.delightful,
+                       assist -> currentTrueEmotion.excited,
+                       assist -> currentTrueEmotion.sexy,
+                       assist -> currentTrueEmotion.energetic,
+                       assist -> currentTrueEmotion.playful,
+                       assist -> currentTrueEmotion.creative,
+                       assist -> currentTrueEmotion.aware,
+                       assist -> currentTrueEmotion.confident,
+                       assist -> currentTrueEmotion.intelligent,
+                       assist -> currentTrueEmotion.worthwhile,
+                       assist -> currentTrueEmotion.valuable,
+                       assist -> currentTrueEmotion.satisfied,
+                       assist -> currentTrueEmotion.cheerful,
+                       assist -> currentTrueEmotion.faithful,
+                       assist -> currentTrueEmotion.important,
+                       assist -> currentTrueEmotion.hopeful,
+                       assist -> currentTrueEmotion.appreciated,
+                       assist -> currentTrueEmotion.respected,
+                       assist -> currentTrueEmotion.proud,
+                       assist -> currentTrueEmotion.pensive,
+                       assist -> currentTrueEmotion.relaxed,
+                       assist -> currentTrueEmotion.responsive,
+                       assist -> currentTrueEmotion.serene,
+                       assist -> currentTrueEmotion.sentimental,
+                       assist -> currentTrueEmotion.thankful,
+                       assist -> currentTrueEmotion.content,
+                       assist -> currentTrueEmotion.thoughtful,
+                       assist -> currentTrueEmotion.intimate,
+                       assist -> currentTrueEmotion.loving,
+                       assist -> currentTrueEmotion.trusting,
+                       assist -> currentTrueEmotion.nurturing,
+                       assist -> currentTrueEmotion.skeptical,
+                       assist -> currentTrueEmotion.irratated,
+                       assist -> currentTrueEmotion.furious,
+                       assist -> currentTrueEmotion.frustrated,
+                       assist -> currentTrueEmotion.selfish,
+                       assist -> currentTrueEmotion.jealous,
+                       assist -> currentTrueEmotion.critical,
+                       assist -> currentTrueEmotion.hateful,
+                       assist -> currentTrueEmotion.rage,
+                       assist -> currentTrueEmotion.angry,
+                       assist -> currentTrueEmotion.hostile,
+                       assist -> currentTrueEmotion.hurt,
+                       assist -> currentTrueEmotion.bewildered,
+                       assist -> currentTrueEmotion.discouraged,
+                       assist -> currentTrueEmotion.insignificant,
+                       assist -> currentTrueEmotion.weak,
+                       assist -> currentTrueEmotion.foolish,
+                       assist -> currentTrueEmotion.embarrassed,
+                       assist -> currentTrueEmotion.rejected,
+                       assist -> currentTrueEmotion.confused,
+                       assist -> currentTrueEmotion.helpful,
+                       assist -> currentTrueEmotion.submissive,
+                       assist -> currentTrueEmotion.insecure,
+                       assist -> currentTrueEmotion.anxious);
         }
         responseEnd1 = strcasecmp("Log Out", response);
         //TODO Add emotional state dependant regex

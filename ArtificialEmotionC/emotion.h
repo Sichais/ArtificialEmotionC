@@ -131,6 +131,9 @@ typedef struct responses {
     int scareBool;
     int peaceBool;
     int powerBool;
+    
+    
+    int debugBool;
 } RESPONSES;
 //Actual Companion struct declaration
 struct Companion {
@@ -260,6 +263,9 @@ int checkQuery(struct Companion *test, char *response, struct Companion *assist)
     }
     if ((strstr(response, "Fibonacci") != NULL || (strstr(response, "fibonacci") != NULL))) {
         assist -> allResponses.fiboBool = 1;
+    }
+    if ((strstr(response, "Debug") != NULL || (strstr(response, "debug") != NULL))) {
+        assist -> allResponses.debugBool = 1;
     }
     return responseBool;
 }
