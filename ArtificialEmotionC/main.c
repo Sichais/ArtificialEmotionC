@@ -62,6 +62,8 @@ int main(int argc, const char * argv[]) {
     const char *emotionTriggersPeace    [nOne] = {"Peaceful"};
     const char *emotionTriggerPowerful  [nOne] = {"Powerful"};
     
+    const char *newline = "\n";
+    
     char *response = malloc(MAX_RESPONSE_SIZE);
     char username[64];
     char password[64];
@@ -170,7 +172,15 @@ int main(int argc, const char * argv[]) {
     if ((strlen(assist -> name) > 0) && (assist -> name[strlen(assist -> name) - 1])) {
         assist -> name[strlen(assist -> name) -1] = '\0';
     }
-    
+    //Sorta redundant, but just in case I need something like it
+    switch (assist -> name[0]) {
+        case '\n': {
+            printf("You didn't enter anything, ");
+        }
+        default: {
+            break;
+        }
+    }
     printf("Hello my name is %s\n", assist -> name);
     //TODO Add an atual input loop
 
@@ -193,11 +203,11 @@ int main(int argc, const char * argv[]) {
         checkPower  (*emotionTriggerPowerful, nTwo, response, assist);
         checkPeace  (*emotionTriggersPeace,   nTwo, response, assist);
         
-        if (assist -> allResponses.joyBool == 1) {
+        if (assist -> allResponses.joyBool          == 1) {
             raiseJoy(assist);
-        } else if (assist -> allResponses.madBool == 1) {
+        } else if (assist -> allResponses.madBool   == 1) {
             raiseMad(assist);
-        } else if (assist -> allResponses.sadBool == 1) {
+        } else if (assist -> allResponses.sadBool   == 1) {
             raiseSad(assist);
         } else if (assist -> allResponses.scareBool == 1) {
             raiseScared(assist);

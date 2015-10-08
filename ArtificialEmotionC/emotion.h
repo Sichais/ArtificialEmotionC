@@ -17,6 +17,106 @@ typedef struct emotion {
     double mad;
     double scared;
 } EMOTION;
+typedef struct webOfEmotions {
+    //S A D B L O C K L1
+    double bashful;
+    double stupid;
+    double miserable;
+    double inadequate;
+    double inferior;
+    double apathetic;
+    
+    //S A D B L O C K L2
+    double guilty;
+    double ashamed;
+    double depressed;
+    double lonely;
+    double bored;
+    double sleepy;
+    
+    //Joyful Block L1
+    double daring;
+    double fascinating;
+    double stimulating;
+    double amused;
+    double extravagant;
+    double delightful;
+    
+    //Joyful Block L2
+    double excited;
+    double sexy;
+    double energetic;
+    double playful;
+    double creative;
+    double aware;
+    
+    //Powerful Block L1
+    double confident;
+    double intelligent;
+    double worthwhile;
+    double valuable;
+    double satisfied;
+    double cheerful;
+    
+    //Powerful Block L2
+    double faithful;
+    double important;
+    double hopeful;
+    double appreciated;
+    double respected;
+    double proud;
+    
+    //Peaceful Block L1
+    double pensive;
+    double relaxed;
+    double responsive;
+    double serene;
+    double sentimental;
+    double thankful;
+    
+    //Peaceful Block L2
+    double content;
+    double thoughtful;
+    double intimate;
+    double loving;
+    double trusting;
+    double nurturing;
+    
+    //Mad Block L1
+    double skeptical;
+    double irratated;
+    double furious;
+    double frustrated;
+    double selfish;
+    double jealous;
+    
+    //Mad Block L2
+    double critical;
+    double hateful;
+    double rage;
+    double angry;
+    double hostile;
+    double hurt;
+    
+    //Scared Block L1
+    double bewildered;
+    double discouraged;
+    double insignificant;
+    double weak;
+    double foolish;
+    double embarrassed;
+    
+    //Scared Block L2
+    double rejected;
+    double confused;
+    double helpful;
+    double submissive;
+    double insecure;
+    double anxious;
+    
+    //I genuinely didn't think there were this many feels,
+   //nor did I think that there could be so many functions
+} TRUE_EMOTION;
 
 typedef struct responses {
     int responseBool;
