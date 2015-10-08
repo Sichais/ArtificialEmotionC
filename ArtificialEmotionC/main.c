@@ -132,13 +132,109 @@ int main(int argc, const char * argv[]) {
     }
     breakOut = 0;
     
-    EMOTION testEmotion = { //The grossly oversimplified version of STATE; EMOTION
+    EMOTION testEmotion = { //The grossly oversimplified version of STATE (Now TRUE_EMOTION
+                           //, because STATE wasn't cmplex enough; EMOTION
         0.0, //Sad
         0.0, //Joy
         0.0, //Power
         0.0, //Peace
         0.0, //Mad
         0.0, //Scare
+    };
+    
+    TRUE_EMOTION testTrueEmotion = { //Remember how small and simple EMOTION was? Yeah. 6 to 72 emotions
+                                    //Fun Fact: Mac users can triple tap a term to look for its definition
+                                   //Just not in Xcode, because Apple is no fun
+        //Sad Block L1
+        0.0, //Bashful
+        0.0, //Stupid
+        0.0, //Miserable
+        0.0, //Inadequate
+        0.0, //Inferior
+        0.0, //Apathetic
+        //...L2
+        0.0, //Guilty
+        0.0, //Ashamed
+        0.0, //Depressed
+        0.0, //Lonely
+        0.0, //Bored
+        0.0, //Sleepy
+        
+        //Joy Block L1
+        0.0, //Daring
+        0.0, //Fascinating
+        0.0, //Stimulating
+        0.0, //Amused
+        0.0, //Extravagant
+        0.0, //Delightful
+        //...L2
+        0.0, //Excited
+        0.0, //Sexy
+        0.0, //Energetic
+        0.0, //Playful
+        0.0, //Creative
+        0.0, //Aware
+        
+        //Power Block L1
+        0.0, //Confident
+        0.0, //Intelligent
+        0.0, //Worthwhile
+        0.0, //Valuable
+        0.0, //Satisfied
+        0.0, //Cheerful
+        //...L2
+        0.0, //Faithful
+        0.0, //Important
+        0.0, //Hopeful
+        0.0, //Appreciated
+        0.0, //Respected
+        0.0, //Proud
+
+        //Peace Block L1
+        0.0, //Pensive
+        0.0, //Relaxed
+        0.0, //Responsive
+        0.0, //Serene
+        0.0, //Sentimental
+        0.0, //Thankful
+        //...L2
+        0.0, //Content
+        0.0, //Thoughtful
+        0.0, //Intimate
+        0.0, //Loving
+        0.0, //Trusting
+        0.0, //Nurturing
+
+        //Mad Block L1
+        0.0, //Skeptical
+        0.0, //Irratated
+        0.0, //Furious
+        0.0, //Frustrated
+        0.0, //Selfish
+        0.0, //Jealous
+        //...L2
+        0.0, //Critical
+        0.0, //Hateful
+        0.0, //Rage
+        0.0, //Angry
+        0.0, //Hostile
+        0.0, //Hurt
+
+        //Scared Block L1
+        0.0, //Bewildered
+        0.0, //Discouraged
+        0.0, //Insignificant
+        0.0, //Weak
+        0.0, //Foolish
+        0.0, //Embarrassed
+        //...L2
+        0.0, //Rejected
+        0.0, //Confused
+        0.0, //Helpful
+        0.0, //Submissive
+        0.0, //Insecure
+        0.0, //Anxious
+
     };
     
     RESPONSES testResponses = {
