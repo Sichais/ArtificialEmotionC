@@ -17,6 +17,7 @@ typedef struct emotion {
     double mad;
     double scared;
 } EMOTION;
+
 typedef struct webOfEmotions {
     //S A D B L O C K L1
     double bashful;
@@ -134,17 +135,22 @@ typedef struct responses {
 //Actual Companion struct declaration
 struct Companion {
     char       *name;
-    EMOTION     currentEmotion;
-    RESPONSES   allResponses;
+    EMOTION      currentEmotion;
+    TRUE_EMOTION currentTrueEmotion;
+    RESPONSES    allResponses;
 } *Companion;
 
 //Creating ("Waking Up") the Companion
-struct Companion *wakeUp (char *name, EMOTION currentEmotion, RESPONSES allResponses) {
+struct Companion *wakeUp (char *name,
+                          EMOTION currentEmotion,
+                          TRUE_EMOTION currentTrueEmotion,
+                          RESPONSES allResponses) {
     struct Companion *who = calloc(3, sizeof(*Companion));
     assert(who != NULL);
 
-    who -> name             = strdup(name);
-    who -> currentEmotion   = currentEmotion;
+    who -> name               = strdup(name);
+    who -> currentEmotion     = currentEmotion;
+    who -> currentTrueEmotion = currentTrueEmotion;
 
     return who;
 }
@@ -210,6 +216,7 @@ int fibonacci(int i) {
     return fibonacci(i - 1) + fibonacci(i - 2);
 }
 //SPECIALIZED FUNCTIONS BLOCK END
+
 //EMOTION/QUERY FUNCTION BLOCK BEGIN
 int checkMad(const char *emotionTriggersMad, int nTwo, char *response, struct Companion *assist) {
     int madBool = 0;

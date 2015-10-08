@@ -62,8 +62,6 @@ int main(int argc, const char * argv[]) {
     const char *emotionTriggersPeace    [nOne] = {"Peaceful"};
     const char *emotionTriggerPowerful  [nOne] = {"Powerful"};
     
-    const char *newline = "\n";
-    
     char *response = malloc(MAX_RESPONSE_SIZE);
     char username[64];
     char password[64];
@@ -249,7 +247,7 @@ int main(int argc, const char * argv[]) {
     };
     struct User *past = establishUsers("Sichais", "password");
     struct User *user = createUser(username, password);
-    struct Companion *assist = wakeUp("\0", testEmotion, testResponses);
+    struct Companion *assist = wakeUp("\0", testEmotion, testTrueEmotion, testResponses);
     
     int logBool = logIn(user, past);
     
@@ -278,7 +276,6 @@ int main(int argc, const char * argv[]) {
         }
     }
     printf("Hello my name is %s\n", assist -> name);
-    //TODO Add an atual input loop
 
     printf("Please enter a command, Or say 'Log out' to exit\n");
     int responseEnd1 = strcasecmp("Log Out", response);
@@ -332,8 +329,6 @@ int main(int argc, const char * argv[]) {
     }
     printf("Shutting down...");
     shutDown(assist);
-    
-    //curl_global_cleanup();
     
     return 0;
 }
