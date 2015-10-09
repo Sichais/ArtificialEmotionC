@@ -204,6 +204,98 @@ int checkPeace  (const char *emotionTriggersPeaceful,   int nTwo, char *response
 int fibonacci(int i);
 //SPECIALIZED FUNCTIONS BLOCK END
 //============================================================================
+//TRUE_EMOTION  RAISE MOD BLOCK BEGIN
+//Sad L1
+void raiseBashful       (struct Companion *test);
+void raiseStupid        (struct Companion *test);
+void raiseMiserable     (struct Companion *test);
+void raiseInadequate    (struct Companion *test);
+void raiseInferior      (struct Companion *test);
+void raiseApathetic     (struct Companion *test);
+//...L2
+void raiseGuilty        (struct Companion *test);
+void raiseAshamed       (struct Companion *test);
+void raiseDepressed     (struct Companion *test);
+void raiseLonely        (struct Companion *test);
+void raiseBored         (struct Companion *test);
+void raiseSleepy        (struct Companion *test);
+
+//Joy L1
+void raiseDaring        (struct Companion *test);
+void raiseFascinating   (struct Companion *test);
+void raiseStimulating   (struct Companion *test);
+void raiseAmused        (struct Companion *test);
+void raiseExtravagant   (struct Companion *test);
+void raiseDelightful    (struct Companion *test);
+//...L2
+void raiseExcited       (struct Companion *test);
+void raiseSexy          (struct Companion *test);
+void raiseEnergetic     (struct Companion *test);
+void raisePlayful       (struct Companion *test);
+void raiseCreative      (struct Companion *test);
+void raiseAware         (struct Companion *test);
+
+//Power L1
+void raiseConfident     (struct Companion *test);
+void raiseIntelligent   (struct Companion *test);
+void raiseWorthwhile    (struct Companion *test);
+void raiseValuable      (struct Companion *test);
+void raiseSatisfied     (struct Companion *test);
+void raiseCheerful      (struct Companion *test);
+//...L2
+void raiseFaithful      (struct Companion *test);
+void raiseImportant     (struct Companion *test);
+void raiseHopeful       (struct Companion *test);
+void raiseAppreciated   (struct Companion *test);
+void raiseRespected     (struct Companion *test);
+void raiseProud         (struct Companion *test);
+
+//Peace L1
+void raisePensive       (struct Companion *test);
+void raiseRelaxed       (struct Companion *test);
+void raiseResponsive    (struct Companion *test);
+void raiseSerene        (struct Companion *test);
+void raiseSentimental   (struct Companion *test);
+void raiseThankful      (struct Companion *test);
+//...L2
+void raiseContent       (struct Companion *test);
+void raiseThoughtful    (struct Companion *test);
+void raiseIntimate      (struct Companion *test);
+void raiseLoving        (struct Companion *test);
+void raiseTrusting      (struct Companion *test);
+void raiseNurturing     (struct Companion *test);
+
+//Mad L1
+void raiseSkeptical     (struct Companion *test);
+void raiseIrratated     (struct Companion *test);
+void raiseFurious       (struct Companion *test);
+void raiseFrustrated    (struct Companion *test);
+void raiseSelfish       (struct Companion *test);
+void raiseJealous       (struct Companion *test);
+//...L2
+void raiseCritical      (struct Companion *test);
+void raiseHateful       (struct Companion *test);
+void raiseRage          (struct Companion *test);
+void raiseAngry         (struct Companion *test);
+void raiseHostile       (struct Companion *test);
+void raiseHurt          (struct Companion *test);
+
+//Scared L1
+void raiseBewildered    (struct Companion *test);
+void raiseDiscouraged   (struct Companion *test);
+void raiseInsignificant (struct Companion *test);
+void raiseWeak          (struct Companion *test);
+void raiseFoolish       (struct Companion *test);
+void raiseEmbarrassed   (struct Companion *test);
+//...L2
+void raiseRejected      (struct Companion *test);
+void raiseConfused      (struct Companion *test);
+void raiseHelpful       (struct Companion *test);
+void raiseSubmissive    (struct Companion *test);
+void raiseInsecure      (struct Companion *test);
+void raiseAnxious       (struct Companion *test);
+//TRUE EMOTION RAISE MOD BLOCK END
+//============================================================================
 //FUNCTION PROTOTYPES END
 
 //FUNCTION DECLARATIONS BEGIN
@@ -410,4 +502,8 @@ void lowerScared (struct Companion *test) {
     test -> currentEmotion.peaceful += 0.7;
     test -> currentEmotion.sad      -= 0.2;
 }
+//EMOTION MOD FUNCTION BLOCK END
+//TRUE_EMOTION MOD FUNCTION BLOCK BEGIN
+
+//TRUE_EMOTION MOD FUNCTION BLOCK END
 #endif
