@@ -247,7 +247,10 @@ int main(int argc, const char * argv[]) {
         0, //power
         0, //Debug command
     };
+    //Create a database of established users, have structs created for each or one via a wildcard
     struct User *past = establishUsers("Sichais", "password");
+    
+    //New struct to be compared to User past
     struct User *user = createUser(username, password);
     struct Companion *assist = wakeUp("\0", testEmotion, testTrueEmotion, testResponses);
     
@@ -326,6 +329,7 @@ int main(int argc, const char * argv[]) {
             }
             assist -> allResponses.fiboBool = 0;
         }
+        //Find a way to cut this down
         if (assist -> allResponses.debugBool == 1) { //72 emotions + 1 line for each for readability
             printf("Debug code entered: \n"         //and needing to reference those same 72 emotions
                    "Bashful:          %f\n"        //really makes the line count skyrocket
@@ -477,6 +481,7 @@ int main(int argc, const char * argv[]) {
         //TODO Add emotional state dependant regex
     }
     printf("Shutting down...");
+    //Frees up memory assist was using
     shutDown(assist);
     
     return 0;
